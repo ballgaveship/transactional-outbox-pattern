@@ -4,7 +4,7 @@ import com.gaveship.employee.application.EmployeeDomainEventMapper
 import com.gaveship.employee.application.EmployeeNotFoundException
 import com.gaveship.employee.application.EmployeeService
 import com.gaveship.employee.domain.model.Employee
-import com.gaveship.employee.domain.model.EmployeeRepository
+import com.gaveship.employee.domain.EmployeeRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
