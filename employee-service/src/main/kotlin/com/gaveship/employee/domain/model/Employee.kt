@@ -11,10 +11,10 @@ import javax.persistence.*
 @DynamicUpdate
 @EntityListeners(AuditingEntityListener::class)
 class Employee(
-    @get:Id
-    @get:GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-    @get:Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     var status: Status = Status.ACTIVE,
     var username: String = "",
     var email: String = "",
@@ -23,11 +23,11 @@ class Employee(
     var displayName: String? = null,
     var dept: String? = null,
     var phoneNumber: String? = null,
-    @get:Column(updatable = false)
-    @get:CreatedDate
+    @Column(updatable = false)
+    @CreatedDate
     var createdDate: LocalDateTime = LocalDateTime.MIN,
-    @get:Column(insertable = false)
-    @get:LastModifiedDate
+    @Column(insertable = false)
+    @LastModifiedDate
     var modifiedDate: LocalDateTime? = null
 ) {
     fun updateTo(employee: Employee) {
