@@ -1,0 +1,17 @@
+version: '2.4'
+services:
+  localstack:
+    image: localstack/localstack:latest-arm64
+    container_name: localstack
+    healthcheck:
+      test: ["CMD-SHELL", "awslocal sns list-topics && awslocal sqs list-queues"]
+    environment:
+      - AWS_DEFAULT_REGION=ap-northeast-2
+      - SERVICES=sqs,sns
+      - HOSTNAME_EXTERNAL=localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    ports:
+      - "4566-4599:4566-4599"
+    volumes:
+      - "/tmp/localstack:/tmp/localstack"
+      - "./.localstack:/docker-entrypoint-initaws.d"
