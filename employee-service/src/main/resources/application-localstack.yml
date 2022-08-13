@@ -1,0 +1,12 @@
+cloud:
+  aws:
+    credentials:
+      accessKey: fake
+      secretKey: fake
+    region:
+      static: ap-northeast-2
+    sns:
+      endpoint: "http://localhost:4566"
+
+cdc:
+  sns_topic: "arn:aws:sns:ap-northeast-2:000000000000:employee_events_topic.fifo"

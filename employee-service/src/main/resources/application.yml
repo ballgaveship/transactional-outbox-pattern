@@ -32,3 +32,7 @@ spring:
     baseline-on-migrate: true
     user: sa
     password:
+
+cdc:
+  polling_ms: 1000
+  batch_size: 50
