@@ -1,4 +1,4 @@
-package com.gaveship.employee
+package com.gaveship
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

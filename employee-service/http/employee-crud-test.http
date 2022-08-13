@@ -1,0 +1,29 @@
+GET {{host}}/v1/employee
+
+
+###
+POST {{host}}/v1/employee
+Content-Type: application/json
+
+{
+  "username": "bgs",
+  "email": "ballgaveship@gmail.com",
+  "firstName": "gaveship",
+  "lastName": "ball",
+  "displayName": "ballgaveship",
+  "dept": "backend",
+  "phoneNumber": "010-1234-5678"
+}
+
+###
+PATCH {{host}}/v1/employee/1
+Content-Type: application/json
+
+{
+  "firstName": "gaveship",
+  "lastName": "kong",
+  "displayName": "konggaveship"
+}
+
+###
+DELETE {{host}}/v1/employee/1
