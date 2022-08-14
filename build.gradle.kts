@@ -41,7 +41,8 @@ allprojects {
 subprojects {
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "kotlin")
-    if (name == "employee-service") {
+    if (name == "employee-service"
+        || name == "consumer-service") {
         apply(plugin = "org.springframework.boot")
         apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 

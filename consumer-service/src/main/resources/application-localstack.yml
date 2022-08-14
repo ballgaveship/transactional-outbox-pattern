@@ -1,0 +1,9 @@
+cloud:
+  aws:
+    credentials:
+      accessKey: fake
+      secretKey: fake
+    region:
+      static: ap-northeast-2
+    sqs:
+      endpoint: "http://localhost:4566"
