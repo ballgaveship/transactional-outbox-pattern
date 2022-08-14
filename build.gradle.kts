@@ -3,8 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "com.gaveship"
 version = "0.0.1-SNAPSHOT"
 
-val springCloudDependenciesVersion by extra { "2021.0.1" }
-val kotlinLoggingVersion by extra { "1.12.5" }
+apply(from = "$rootDir/versions.gradle.kts")
+val springCloudDependenciesVersion: String by extra
+val kotlinLoggingVersion: String by extra
+val awsSpringCloudVersion: String by extra
+val hibernateTypesVersion: String by extra
+val jacksonAnnotationsVersion: String by extra
 
 plugins {
     id("org.springframework.boot") version "2.7.2"
@@ -39,36 +43,20 @@ allprojects {
 }
 
 subprojects {
+    apply(from = "$rootDir/versions.gradle.kts")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "kotlin")
-    if (name == "employee-service"
-        || name == "consumer-service") {
-        apply(plugin = "org.springframework.boot")
-        apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-
-        dependencies {
-            implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-            implementation("org.jetbrains.kotlin:kotlin-reflect")
-            implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-            implementation("io.github.microutils:kotlin-logging")
-        }
-
-        tasks.jar {
-            enabled = true
-        }
-        tasks.forEach {
-            if (it.name == "bootJar") {
-                it.enabled = false
-            }
-        }
-    }
 
     dependencyManagement {
         dependencies {
             imports {
                 mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudDependenciesVersion")
             }
+            dependency("com.vladmihalcea:hibernate-types-52:$hibernateTypesVersion")
             dependency("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
+            dependency("io.awspring.cloud:spring-cloud-aws-messaging:$awsSpringCloudVersion")
+            dependency("io.awspring.cloud:spring-cloud-aws-autoconfigure:$awsSpringCloudVersion")
+            dependency("com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion")
         }
     }
 

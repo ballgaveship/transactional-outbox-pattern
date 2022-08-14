@@ -1,3 +1,9 @@
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.3")
+    implementation("com.fasterxml.jackson.core:jackson-annotations")
+}
+
+tasks {
+    withType<Jar> {
+        enabled = true
+    }
 }
