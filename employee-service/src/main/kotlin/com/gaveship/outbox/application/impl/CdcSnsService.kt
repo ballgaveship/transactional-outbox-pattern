@@ -33,12 +33,15 @@ class CdcSnsService(
     @Scheduled(fixedDelayString = "\${cdc.polling_ms}")
     override fun forwardEvent() {
         val entities = outboxRepository.findAllByOrderByIdAsc(Pageable.ofSize(batchSize)).toList()
+        if (entities.isEmpty()) {
+            return
+        }
         entities.forEach {
             amazonSNS.publish(
                 PublishRequest()
                     .withTopicArn(snsTopic)
                     .withMessage(it.payload.toString())
-                    .withMessageGroupId("${it.aggregateType} - ${it.aggregateId}")
+                    .withMessageGroupId("${it.aggregateType}-${it.aggregateId}")
                     .withMessageAttributes(
                         mapOf(
                             EVENT_TYPE to MessageAttributeValue()
