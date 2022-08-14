@@ -36,3 +36,7 @@ spring:
 cdc:
   polling_ms: 1000
   batch_size: 50
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
