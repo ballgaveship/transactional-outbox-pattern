@@ -1,6 +1,7 @@
 package com.gaveship.employee.interfaces.v1
 
 import com.gaveship.employee.application.EmployeeService
+import com.gaveship.employee.domain.model.UpdateEmployeeDto
 import com.gaveship.employee.interfaces.v1.model.*
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -34,7 +35,7 @@ class EmployeeController(
     ): UpdateEmployeeResponse {
         employeeService.update(
             employeeId,
-            employeeRestMapper.toEmployee(updateEmployeeRequest)
+            UpdateEmployeeDto(updateEmployeeRequest.firstName, updateEmployeeRequest.lastName, updateEmployeeRequest.displayName)
         )
         return UpdateEmployeeResponse(employeeId)
     }

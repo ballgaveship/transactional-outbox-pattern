@@ -22,12 +22,12 @@ class OutboxServiceImpl(
     @EventListener
     override fun handleEnrichedDomainEvent(event: EnrichedDomainEvent<*>) {
         em.persist(
-            Outbox().apply {
-                aggregateId = event.aggregateId
-                aggregateType = event.aggregateType
-                eventType = event.domainEventType
-                payload = objectMapper.convertValue(event.domainEvent, JsonNode::class.java)
-            }
+            Outbox(
+                event.aggregateId,
+                event.aggregateType,
+                event.domainEventType,
+                objectMapper.convertValue(event.domainEvent, JsonNode::class.java)
+            )
         )
         log.debug { "event handled [$event]" }
     }
