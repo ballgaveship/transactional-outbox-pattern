@@ -35,7 +35,6 @@ allprojects {
 }
 
 subprojects {
-    apply(from = "$rootDir/versions.gradle.kts")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "kotlin")
 
