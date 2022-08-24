@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 apply(plugin = "org.springframework.boot")
 apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
@@ -13,4 +15,12 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging")
 
     implementation(project(":domain-events"))
+}
+
+tasks.withType<Jar> {
+    enabled = false
+}
+
+tasks.withType<BootJar> {
+    enabled = true
 }
